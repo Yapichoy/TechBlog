@@ -1,0 +1,19 @@
+@import '../../styles/vars';
+.footer{
+    width: 100%;
+    height: 80px;
+    background: $footerBg;
+    padding-left: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    color: #fff;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+
+    p {
+        margin-bottom: 0;
+    }
+}
