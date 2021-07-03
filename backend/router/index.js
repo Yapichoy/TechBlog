@@ -1,9 +1,9 @@
 const general =  require('./general');
-const search =  require('./search');
+const admin =  require('./admin');
 const api =  require('./api');
 
 module.exports  = {
     general,
-    search,
+    admin,
     api
 }
