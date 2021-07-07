@@ -8,7 +8,7 @@ const Quote = ({title, description, preview, text, updatedAt}) => {
 
 
     return <NavLink to='/post' className="newsItem" title="В приложении Google для iOS появилась игра-пасхалка" >
-      <div className="newsItem__picture"><img src={preview} alt={title} /></div>
+      <div className="newsItem__picture"><img src={`http://server.geekbreak.ru`+preview} alt={title} /></div>
       <div className="newsItem__information">
         <div>
           <div className="newsItem__header">
