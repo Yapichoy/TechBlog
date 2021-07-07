@@ -24,7 +24,7 @@ app.use(middleware.track);
 app.use(fileUpload());
 
 app.set("view engine", "pug");
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
 
 app.use('/', general);
 app.use('/admin', admin);

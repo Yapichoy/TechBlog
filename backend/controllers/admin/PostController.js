@@ -14,8 +14,8 @@ class PostController {
         let filePath = ''
         if (req.files?.preview) {
             let preview = req.files.preview;
-            filePath = '/public/uploads/' + preview.name;
-            preview.mv(__dirname + '/../..' + filePath);
+            filePath = '/uploads/' + preview.name;
+            preview.mv(__dirname + '/../../public' + filePath);
         }
         await Post.create({...postArr, preview: filePath});
         
