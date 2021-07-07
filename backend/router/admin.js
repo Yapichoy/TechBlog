@@ -1,16 +1,34 @@
 var express = require('express');
 var router = express.Router();
+const bodyParser = require("body-parser");
+const userController = require('../controllers/admin/UserController');
+const postController = require('../controllers/admin/PostController');
+
+const urlencodedParser = bodyParser.urlencoded({ limit: "50mb", extended: true, parameterLimit: 50000 });
 
 router.get('/', (req, res) => {
     res.render('admin/index')
 })
-router.get('/users', (req, res) => {
-    res.render('admin/users')
-})
-router.get('/users/add', (req, res) => {
+
+//users
+router.get('/users', userController.index)
+router.get('/users/add',urlencodedParser, (req, res) => {
     res.render('admin/users_add')
 })
+router.post('/users/add', urlencodedParser, userController.addPost);
+
 router.get('/users/edit', (req, res) => {
+    res.render('admin/users_edit')
+})
+
+//post
+router.get('/post', postController.index)
+router.get('/post/add',urlencodedParser, (req, res) => {
+    res.render('admin/post_add')
+})
+router.post('/post/add', urlencodedParser, postController.addPost);
+
+router.get('/post/edit', (req, res) => {
     res.render('admin/users_edit')
 })
 

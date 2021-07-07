@@ -1,24 +1,23 @@
 import { useEffect } from "react";
 import NewsItem from "../../components/NewsItem";
-import { connectThunkCreator,  setFormDataActionCreator} from "../../redux/reducers/formReducer";
 import {connect} from "react-redux";
 import './MainPage.scss';
-
-const MainPage = ({connection, setFormData}) => {
+import {getPostsThunkCreator} from '../../redux/reducers/postsReducer';
+const MainPage = ({posts, getPosts}) => {
   useEffect(()=>{
-    //connection();
+    getPosts();
   }, []);
   return <section className="main">
-      <NewsItem />
-      <NewsItem />
+      { posts.map(p => <NewsItem {...p}  key={p.id}/>)}
   </section>
 
 }
 const mapStateToProps = (state) => {
-  return {}
+  return {
+    posts: state.posts.posts
+  }
 }
 export default connect(mapStateToProps, {
-  connection: connectThunkCreator,
-  setFormData: setFormDataActionCreator
+  getPosts: getPostsThunkCreator,
   
 })(MainPage);

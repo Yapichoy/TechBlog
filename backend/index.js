@@ -1,4 +1,4 @@
-//const db  = require('./models');
+const db  = require('./models');
 require('dotenv').config();
 const express = require('express')
 const app = express();
@@ -7,6 +7,7 @@ const { general, admin, api } =  require('./router');
 var device = require('express-device');
 const cookieParser = require('cookie-parser')
 const middleware = require('./middleware');
+const fileUpload = require('express-fileupload');
 
 async function connect (){
   try {
@@ -18,7 +19,9 @@ async function connect (){
 }
 app.use(cookieParser(process.env.SECRET_KEY));
 app.use(device.capture());
-//app.use(middleware.track);
+app.use(middleware.track);
+
+app.use(fileUpload());
 
 app.set("view engine", "pug");
 app.use(express.static(__dirname + '/public'));
@@ -27,10 +30,9 @@ app.use('/', general);
 app.use('/admin', admin);
 app.use('/api', api);
 
-/*db.sequelize.sync().then(()=>{
-  
-}).catch(err=>console.log(err));*/
+db.sequelize.sync({force: false}).then(()=>{
+    app.listen(port, function(){
+    console.log("Сервер ожидает подключения...", port);
+  });
+}).catch(err=>console.log(err));
 
-app.listen(port, function(){
-  console.log("Сервер ожидает подключения...", port);
-});

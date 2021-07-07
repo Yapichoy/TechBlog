@@ -4,18 +4,18 @@ import { faComments, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 
 
-const Quote = () => {
+const Quote = ({title, description, preview, text, updatedAt}) => {
 
 
     return <NavLink to='/post' className="newsItem" title="В приложении Google для iOS появилась игра-пасхалка" >
-      <div className="newsItem__picture"><img src={process.env.PUBLIC_URL + '/Cyy6U1wxO1z18SsdgEa6eQwRm5VRsJuKib9UY0kE7jDFt.jpg'} alt="img" /></div>
+      <div className="newsItem__picture"><img src={preview} alt={title} /></div>
       <div className="newsItem__information">
         <div>
           <div className="newsItem__header">
-            В приложении Google для iOS появилась игра-пасхалка
+            {title}
           </div>
           <div className="newsItem__description">
-          Разработчики компании нередко встраивают в фирменные приложения неочевидные функции вроде мини-игры с динозавром в Chrome. Не ...
+            {description}
           </div>
         </div>
         <div className="newsItem__bottom">
