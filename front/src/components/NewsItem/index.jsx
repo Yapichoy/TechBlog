@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import format from 'date-fns/format'
 import rulocale from 'date-fns/locale/ru';
 
-const Quote = ({id, title, description, preview, text, updatedAt}) => {
+const Quote = ({id, title, descriptionPreview, preview, text, updatedAt}) => {
 
     return <NavLink to={`/post/${id}`} className="newsItem" title="В приложении Google для iOS появилась игра-пасхалка" >
       <div className="newsItem__picture"><img src={`${process.env.REACT_APP_SERVER_NAME}${preview}`} alt={title} /></div>
@@ -15,7 +15,7 @@ const Quote = ({id, title, description, preview, text, updatedAt}) => {
             {title}
           </div>
           <div className="newsItem__description">
-            {description}
+            {descriptionPreview}
           </div>
         </div>
         <div className="newsItem__bottom">
