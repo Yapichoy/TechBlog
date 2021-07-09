@@ -9,7 +9,7 @@ module.exports = {
         //     CookieHelper.setCookie(res, 'session', session);
         // }
        // req.session = session;
-        var allowedOrigins =  ['http://localhost:3000', 'http://www.geekbreak.ru'];
+        var allowedOrigins =  ['http://localhost:3000', 'https://www.geekbreak.ru', 'https://geekbreak.ru'];
         res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requeted-With, Content-Type, Accept, Authorization, RBR');
         var origin = req.headers.origin;
         if(allowedOrigins.indexOf(origin) > -1){

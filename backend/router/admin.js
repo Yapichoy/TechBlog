@@ -3,7 +3,7 @@ var router = express.Router();
 const bodyParser = require("body-parser");
 const userController = require('../controllers/admin/UserController');
 const postController = require('../controllers/admin/PostController');
-
+const uploadController = require('../controllers/admin/UploadController');
 const urlencodedParser = bodyParser.urlencoded({ limit: "50mb", extended: true, parameterLimit: 50000 });
 
 router.get('/', (req, res) => {
@@ -32,6 +32,11 @@ router.get('/post/edit', (req, res) => {
     res.render('admin/users_edit')
 })
 
+//Upload
+router.get('/uploads/', uploadController.index);
+
+router.get('/upload/', uploadController.addIndex);
+router.post('/upload/',urlencodedParser, uploadController.add);
 //Auth
 router.get('/auth', (req, res) => {
     res.render("admin/login");

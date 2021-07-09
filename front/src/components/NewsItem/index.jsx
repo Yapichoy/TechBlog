@@ -2,13 +2,13 @@ import './NewsItem.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComments, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
+import format from 'date-fns/format'
+import rulocale from 'date-fns/locale/ru';
 
+const Quote = ({id, title, description, preview, text, updatedAt}) => {
 
-const Quote = ({title, description, preview, text, updatedAt}) => {
-
-
-    return <NavLink to='/post' className="newsItem" title="В приложении Google для iOS появилась игра-пасхалка" >
-      <div className="newsItem__picture"><img src={`http://server.geekbreak.ru`+preview} alt={title} /></div>
+    return <NavLink to={`/post/${id}`} className="newsItem" title="В приложении Google для iOS появилась игра-пасхалка" >
+      <div className="newsItem__picture"><img src={`${process.env.REACT_APP_SERVER_NAME}${preview}`} alt={title} /></div>
       <div className="newsItem__information">
         <div>
           <div className="newsItem__header">
@@ -20,7 +20,7 @@ const Quote = ({title, description, preview, text, updatedAt}) => {
         </div>
         <div className="newsItem__bottom">
           <div className="newsItem__bottom--date">
-            02.07.21
+            {format(new Date(updatedAt),'dd/MM/yyyy H:m', {addSuffix: true, locale: rulocale})}
           </div>
           <div className="newsItem__bottom__info">
             {/* <div className="newsItem__bottom__info--likes"><FontAwesomeIcon icon={ faHeart }/> 20</div> */}

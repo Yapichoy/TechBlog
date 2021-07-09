@@ -10,6 +10,7 @@ const Session = require(__dirname + "/Session")(sequelize, DataTypes);
 const User = require(__dirname + "/User")(sequelize, DataTypes);
 const Post = require(__dirname + "/Post")(sequelize, DataTypes);
 const Commentarie = require(__dirname + "/Commentarie")(sequelize, DataTypes);
+const Upload = require(__dirname + "/Upload")(sequelize, DataTypes);
 
 User.hasMany(Post);
 User.hasMany(Commentarie);
@@ -22,5 +23,6 @@ module.exports = {
   Session,
   User,
   Post,
-  Commentarie
+  Commentarie,
+  Upload
 };

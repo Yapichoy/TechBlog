@@ -9,7 +9,7 @@ const Header = () => {
 
         <div className="search">
           <input type="text" id="search" placeholder="Поиск" className="search__input" />
-          <label for="search"><img src={process.env.PUBLIC_URL + '/search-icon.png'} className="search__icon" alt="" /></label>
+          <label htmlFor="search"><img src={process.env.PUBLIC_URL + '/search-icon.png'} className="search__icon" alt="" /></label>
         </div>
     </div>
   

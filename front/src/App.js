@@ -11,7 +11,7 @@ function App() {
         <Header/>
         <div className="container">
           <Route exact path={['/']} component={MainPage}/>
-          <Route exact path={['/post']} component={NewsPage}/>
+          <Route exact path={['/post/:id']} component={NewsPage}/>
         </div>
         <Footer/>
       </div>

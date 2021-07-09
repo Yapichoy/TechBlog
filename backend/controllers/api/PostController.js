@@ -11,6 +11,17 @@ class PostController {
         });
         res.json(posts.map(p => p.dataValues))
     }
+
+    async getPost (req, res) {
+        const id = req.params.id;
+
+        const post = await Post.findOne({
+            where: {
+                id: id
+            },
+        });
+        res.json(post.dataValues);
+    }
 }
 
 module.exports = new PostController();

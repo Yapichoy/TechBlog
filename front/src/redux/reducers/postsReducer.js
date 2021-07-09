@@ -10,7 +10,7 @@ let postsReducer = (state = initialState, action) => {
     switch(action?.type) {
         case GET_POSTS:
             return { ...state, 
-                posts: [...state.posts, ...action.posts] };
+                posts:  [...action.posts] };
     }
     return state;
 };

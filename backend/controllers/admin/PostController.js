@@ -1,4 +1,5 @@
 const {Post} = require('../../models');
+const {Upload} = require('../../models');
 const _ = require('lodash');
 
 class PostController {
@@ -10,12 +11,14 @@ class PostController {
 
     async addPost(req, res) {
         const postArr = req.body;
-        console.log('post arr', req.files);
-        let filePath = ''
+        let filePath = '', fileName ='', fullPath='';
         if (req.files?.preview) {
             let preview = req.files.preview;
-            filePath = '/uploads/' + preview.name;
+            fileName = preview.md5 + '.'+ preview.name.split('.')[1];
+            filePath = '/uploads/' + fileName;
+            fullPath = process.env.HOST+filePath;
             preview.mv(__dirname + '/../../public' + filePath);
+            await Upload.create({path: filePath, name: fileName, full_path: fullPath});
         }
         await Post.create({...postArr, preview: filePath});
         
