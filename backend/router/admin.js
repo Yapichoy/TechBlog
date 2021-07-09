@@ -28,15 +28,17 @@ router.get('/post/add',urlencodedParser, (req, res) => {
 })
 router.post('/post/add', urlencodedParser, postController.addPost);
 
-router.get('/post/edit', (req, res) => {
-    res.render('admin/users_edit')
-})
+router.get('/post/edit/:id', (req, res) => {
+    postController.editIndex(req, res)
+});
+router.post('/post/edit',urlencodedParser, postController.edit);
 
 //Upload
 router.get('/uploads/', uploadController.index);
 
 router.get('/upload/', uploadController.addIndex);
 router.post('/upload/',urlencodedParser, uploadController.add);
+
 //Auth
 router.get('/auth', (req, res) => {
     res.render("admin/login");

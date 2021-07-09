@@ -24,6 +24,32 @@ class PostController {
         
         res.redirect('/admin/post');
     }
+
+    async editIndex (req, res) {
+        const id = req.params.id;
+        const post = await Post.findOne({
+            where: {id: id}
+        });
+        res.render('admin/post_edit', {post: post.dataValues});
+    }
+
+    async edit(req, res) {
+        const arr = req.body;
+        console.log("req data", arr);
+        //let filePath = '',fileName ='', fullPath='';
+        /*if (req.files?.file && ) {
+            let file = req.files.file;
+            fileName = file.md5 + '.'+ file.name.split('.')[1];
+            filePath = '/uploads/' + fileName;
+            fullPath = process.env.HOST+filePath;
+            file.mv(__dirname + '/../../public' + filePath);
+        }*/
+        await Post.update(arr, {where: {
+            id: arr.id
+        }});
+        
+        res.redirect('/admin/post');
+    }
 }
 
 module.exports = new PostController();

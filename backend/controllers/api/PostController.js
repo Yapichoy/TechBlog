@@ -9,7 +9,17 @@ class PostController {
                 status: STATUS.ACTIVE
             },
         });
-        res.json(posts.map(p => p.dataValues))
+        const mappedPost = posts.map(p => {
+            let post =  p.dataValues;
+            post.descriptionPreview = this.cutDescription(post.description);
+            console.log('Prev', post.descriptionPreview);
+            return post;
+        });
+        res.json(mappedPost);
+    }
+
+    cutDescription(d) {
+        return d.substr(0, 255) + '...';
     }
 
     async getPost (req, res) {
