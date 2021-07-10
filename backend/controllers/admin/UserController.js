@@ -1,10 +1,10 @@
 const {User} = require('../../models');
+const Hash = require('../../helpers/Hash');
 
 class UserController {
     constructor() {}
     async index (req, res) {
         const users = await User.findAll();
-        console.log(users);
         res.render('admin/users', {users: users.map(u => u.dataValues)})
     }
 
@@ -16,6 +16,7 @@ class UserController {
             }
         });
         if(!alreadyExist) {
+            userArr.password = Hash.hashCode(userArr.password);
             const user = await User.create(userArr);
         }
         
