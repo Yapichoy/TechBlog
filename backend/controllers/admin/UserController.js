@@ -5,7 +5,7 @@ class UserController {
     constructor() {}
     async index (req, res) {
         const users = await User.findAll();
-        res.render('admin/users', {users: users.map(u => u.dataValues)})
+        res.render('admin/users', {users: users.map(u => u.dataValues), user: req.user})
     }
 
     async addPost(req, res) {

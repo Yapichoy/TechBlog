@@ -3,7 +3,7 @@ require('dotenv').config();
 const express = require('express')
 const app = express();
 const port = process.env.SERVER_PORT;
-const { general, admin, api } =  require('./router');
+const { general, admin, api, auth } =  require('./router');
 var device = require('express-device');
 const cookieParser = require('cookie-parser')
 const middleware = require('./middleware');
@@ -27,8 +27,12 @@ app.set("view engine", "pug");
 app.use(express.static(__dirname + '/public'));
 
 app.use('/', general);
+
+app.use('/admin', middleware.auth);
 app.use('/admin', admin);
+
 app.use('/api', api);
+app.use('/auth', auth);
 
 db.sequelize.sync({force: false}).then(()=>{
     app.listen(port, function(){

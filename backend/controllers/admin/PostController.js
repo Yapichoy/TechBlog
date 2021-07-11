@@ -6,7 +6,7 @@ class PostController {
     constructor() {}
     async index (req, res) {
         const posts = await Post.findAll();
-        res.render('admin/post', {posts: posts.map(p => p.dataValues)})
+        res.render('admin/post', {posts: posts.map(p => p.dataValues), user: req.user})
     }
 
     async addPost(req, res) {
@@ -30,7 +30,7 @@ class PostController {
         const post = await Post.findOne({
             where: {id: id}
         });
-        res.render('admin/post_edit', {post: post.dataValues});
+        res.render('admin/post_edit', {post: post.dataValues, user: req.user});
     }
 
     async edit(req, res) {
