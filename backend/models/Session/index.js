@@ -18,6 +18,10 @@ module.exports = (sequelize, DataTypes) => {
           device_type: {
             type: DataTypes.STRING(50),
             allowNull: true
+          },
+          adminId: {
+            type: DataTypes.INTEGER,
+            allowNull: false
           }
     });
 }

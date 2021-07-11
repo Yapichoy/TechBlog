@@ -4,10 +4,10 @@ require('dotenv').config();
 class UploadController {
     async index (req, res) {
         const uploads = await Upload.findAll();
-        res.render('admin/uploads', {uploads: uploads.map(u => u.dataValues)})
+        res.render('admin/uploads', {uploads: uploads.map(u => u.dataValues), user: req.user});
     }
     async addIndex (req, res) {
-        res.render('admin/upload_add')
+        res.render('admin/upload_add', {user: req.user})
     }
     async add(req, res) {
         const arr = req.body;

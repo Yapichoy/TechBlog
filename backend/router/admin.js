@@ -7,24 +7,24 @@ const uploadController = require('../controllers/admin/UploadController');
 const urlencodedParser = bodyParser.urlencoded({ limit: "50mb", extended: true, parameterLimit: 50000 });
 
 router.get('/', (req, res) => {
-    res.render('admin/index')
+    res.render('admin/index', {user: req.user})
 })
 
 //users
 router.get('/users', userController.index)
 router.get('/users/add',urlencodedParser, (req, res) => {
-    res.render('admin/users_add')
+    res.render('admin/users_add', {user: req.user})
 })
 router.post('/users/add', urlencodedParser, userController.addPost);
 
 router.get('/users/edit', (req, res) => {
-    res.render('admin/users_edit')
+    res.render('admin/users_edit', {user: req.user})
 })
 
 //post
 router.get('/post', postController.index)
 router.get('/post/add',urlencodedParser, (req, res) => {
-    res.render('admin/post_add')
+    res.render('admin/post_add', {user: req.user})
 })
 router.post('/post/add', urlencodedParser, postController.addPost);
 
@@ -38,18 +38,5 @@ router.get('/uploads/', uploadController.index);
 
 router.get('/upload/', uploadController.addIndex);
 router.post('/upload/',urlencodedParser, uploadController.add);
-
-//Auth
-router.get('/auth', (req, res) => {
-    res.render("admin/login");
-})
-
-router.get('/forgot_password', (req, res) => {
-    res.render("admin/forgot_password");
-})
-
-router.get('/recover_password', (req, res) => {
-    res.render("admin/recover_password");
-})
 
 module.exports = router;
