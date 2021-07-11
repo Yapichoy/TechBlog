@@ -1,8 +1,7 @@
 import './Blog.scss';
 import { NavLink} from 'react-router-dom';
 import { useEffect } from 'react';
-import format from 'date-fns/format'
-import rulocale from 'date-fns/locale/ru';
+import { dateTimeFormat } from '../../../helper';
 
 const Blog = ({id, title, description, preview, text, updatedAt, getPost, match}) => {
     useEffect(()=>{
@@ -21,9 +20,9 @@ const Blog = ({id, title, description, preview, text, updatedAt, getPost, match}
             </div>
         </div>
         <div className="blog__top">
-          <div className="blog__top--date"> {updatedAt && format(new Date(updatedAt), 'dd/MM/yyyy H:m', {addSuffix: true, locale: rulocale})}</div>
+          <div className="blog__top--date"> {dateTimeFormat(updatedAt)}</div>
           <div className="blog__top--categories">
-            <NavLink to="#">Apple</NavLink> / <NavLink to="#">Google</NavLink> / <NavLink to="#">IOS</NavLink>
+            {/* <NavLink to="#">Apple</NavLink> / <NavLink to="#">Google</NavLink> / <NavLink to="#">IOS</NavLink> */}
           </div> 
         </div>
         <div className="blog__body" dangerouslySetInnerHTML={{ __html: text}} />

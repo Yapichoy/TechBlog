@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: true
           },
           description: {
-            type: DataTypes.TEXT('tiny'),
+            type: DataTypes.TEXT,
             allowNull: true
           },
           text: {
