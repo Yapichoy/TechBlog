@@ -4,7 +4,7 @@ const {User} = require('../models');
 
 module.exports = {
     track: function(req, res, next) {
-        var allowedOrigins =  ['http://localhost:3000', 'https://www.geekbreak.ru', 'https://geekbreak.ru'];
+        var allowedOrigins =  ['http://localhost:3000', 'https://www.geekbreak.ru', 'https://geekbreak.ru', 'http://www.geekbreak.ru:8051', 'http://geekbreak.ru:8051'];
         res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requeted-With, Content-Type, Accept, Authorization, RBR');
         var origin = req.headers.origin;
         if(allowedOrigins.indexOf(origin) > -1){

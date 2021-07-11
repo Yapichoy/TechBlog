@@ -2,8 +2,8 @@ import './NewsItem.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComments, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
-import format from 'date-fns/format'
-import rulocale from 'date-fns/locale/ru';
+import { dateTimeFormat } from '../../helper';
+
 
 const Quote = ({id, title, descriptionPreview, preview, text, updatedAt}) => {
 
@@ -20,7 +20,7 @@ const Quote = ({id, title, descriptionPreview, preview, text, updatedAt}) => {
         </div>
         <div className="newsItem__bottom">
           <div className="newsItem__bottom--date">
-            {format(new Date(updatedAt),'dd/MM/yyyy H:m', {addSuffix: true, locale: rulocale})}
+            {dateTimeFormat(updatedAt)}
           </div>
           <div className="newsItem__bottom__info">
             {/* <div className="newsItem__bottom__info--likes"><FontAwesomeIcon icon={ faHeart }/> 20</div> */}
