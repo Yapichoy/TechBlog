@@ -24,7 +24,7 @@ router.get('/users/edit', (req, res) => {
 //post
 router.get('/post', postController.index)
 router.get('/post/add',urlencodedParser, (req, res) => {
-    res.render('admin/post_add', {user: req.user})
+    postController.addIndex(req, res);
 })
 router.post('/post/add', urlencodedParser, postController.addPost);
 

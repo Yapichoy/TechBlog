@@ -1,4 +1,5 @@
 const {Post} = require('../../models');
+const {Meta} = require('../../models');
 const {STATUS} = require('../../helpers/Constants')
 
 class PostController {
@@ -12,14 +13,13 @@ class PostController {
         const mappedPost = posts.map(p => {
             let post =  p.dataValues;
             post.descriptionPreview = this.cutDescription(post.description);
-            console.log('Prev', post.descriptionPreview);
             return post;
         });
         res.json(mappedPost);
     }
 
     cutDescription(d) {
-        return d.substr(0, 255) + '...';
+        return d.length > 0 && d.substr(0, 255) + '...';
     }
 
     async getPost (req, res) {
@@ -29,7 +29,9 @@ class PostController {
             where: {
                 id: id
             },
+            include: [Meta]
         });
+        post.dataValues.metas = post.meta.map(m => m.dataValues);
         res.json(post.dataValues);
     }
 }
