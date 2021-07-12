@@ -2,8 +2,9 @@ import './Blog.scss';
 import { NavLink} from 'react-router-dom';
 import { useEffect } from 'react';
 import { dateTimeFormat } from '../../../helper';
+import { Meta } from '../../../components';
 
-const Blog = ({id, title, description, preview, text, updatedAt, getPost, match}) => {
+const Blog = ({id, title, description, preview, text, updatedAt, metas, getPost, match}) => {
     useEffect(()=>{
       getPost(match.params.id);
     }, []);
@@ -22,7 +23,7 @@ const Blog = ({id, title, description, preview, text, updatedAt, getPost, match}
         <div className="blog__top">
           <div className="blog__top--date"> {dateTimeFormat(updatedAt)}</div>
           <div className="blog__top--categories">
-            {/* <NavLink to="#">Apple</NavLink> / <NavLink to="#">Google</NavLink> / <NavLink to="#">IOS</NavLink> */}
+            { metas?.map((m, index) => <Meta {...m} key={m.slug} index={index} length={metas.length}/>)}
           </div> 
         </div>
         <div className="blog__body" dangerouslySetInnerHTML={{ __html: text}} />

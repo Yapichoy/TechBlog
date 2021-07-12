@@ -11,11 +11,15 @@ const User = require(__dirname + "/User")(sequelize, DataTypes);
 const Post = require(__dirname + "/Post")(sequelize, DataTypes);
 const Commentarie = require(__dirname + "/Commentarie")(sequelize, DataTypes);
 const Upload = require(__dirname + "/Upload")(sequelize, DataTypes);
+const Meta = require(__dirname + "/Meta")(sequelize, DataTypes);
+const PostMeta = require(__dirname + "/PostMeta")(sequelize, DataTypes);
 
 User.hasMany(Post);
 User.hasMany(Commentarie);
 Post.hasMany(Commentarie);
 
+Post.belongsToMany(Meta, {through: PostMeta})
+Meta.belongsToMany(Post, {through: PostMeta})
 
 module.exports = {
   sequelize,
@@ -24,5 +28,7 @@ module.exports = {
   User,
   Post,
   Commentarie,
-  Upload
+  Upload,
+  Meta,
+  PostMeta,
 };
