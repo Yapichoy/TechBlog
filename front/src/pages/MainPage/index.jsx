@@ -1,12 +1,22 @@
 import { useEffect } from "react";
 import NewsItem from "../../components/NewsItem";
-import {connect} from "react-redux";
+import { withRouter } from 'react-router';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 import './MainPage.scss';
 import {getPostsThunkCreator} from '../../redux/reducers/postsReducer';
-const MainPage = ({posts, getPosts}) => {
+import { searchEndActionCreator } from "../../redux/reducers/headerReducer";
+
+const MainPage = ({posts, getPosts, match, isSearch, btnClicked , searchStr, searchEnd}) => {
   useEffect(()=>{
-    getPosts();
-  }, []);
+    const meta = match?.params?.meta || null;
+    let search = '';
+    if (isSearch) {
+      search = searchStr;
+      searchEnd();
+    }
+    getPosts({meta, search});
+  }, [btnClicked]);
   return <section className="main">
       { posts.map(p => <NewsItem {...p}  key={p.id}/>)}
   </section>
@@ -14,10 +24,14 @@ const MainPage = ({posts, getPosts}) => {
 }
 const mapStateToProps = (state) => {
   return {
-    posts: state.posts.posts
+    posts: state.posts.posts,
+    isSearch: state.header.search,
+    searchStr: state.header.searchStr,
+    btnClicked: state.header.btnClicked,
   }
 }
-export default connect(mapStateToProps, {
+export default compose(connect(mapStateToProps, {
   getPosts: getPostsThunkCreator,
+  searchEnd: searchEndActionCreator
   
-})(MainPage);
+}), withRouter)(MainPage);

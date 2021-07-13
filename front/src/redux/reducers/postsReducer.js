@@ -21,8 +21,8 @@ export let getPostsActionCreator = (posts) => {
     };
 };
 
-export const getPostsThunkCreator = () => async dispatch => {
-    let posts = await getPostsApi();
+export const getPostsThunkCreator = ({meta, search}) => async dispatch => {
+    let posts = await getPostsApi({meta, search});
     dispatch(getPostsActionCreator(posts));
 }
 export default postsReducer;

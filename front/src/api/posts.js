@@ -5,8 +5,8 @@ const instance = axios.create({
     withCredentials: true
   });
 
-export const getPostsApi = () => {
-    return instance.get(`getPosts`).then( response => response.data);
+export const getPostsApi = ({meta, search}) => {
+    return instance.get(`getPosts/?${meta?'meta='+meta: ''}${search?'search='+search:''}`).then( response => response.data);
 }
 
 export const getPostApi = (postId) => {
