@@ -1,15 +1,41 @@
-const {Post} = require('../../models');
-const {Meta} = require('../../models');
+const {Post, Meta, Sequelize } = require('../../models');
 const {STATUS} = require('../../helpers/Constants')
+const Op = Sequelize.Op;
 
 class PostController {
     constructor() {}
     async getPosts (req, res) {
-        const posts = await Post.findAll({
-            where: {
-                status: STATUS.ACTIVE
-            },
-        });
+        let meta = {};
+        let settings = {
+            where: {},
+            order: [['createdAt','DESC']]
+        }
+        if (req.query.meta) {
+            meta = Meta
+            if (!('inclide' in settings)) {
+                settings.include = [];
+            }
+            settings.include.push(meta);
+            settings.where['$meta.slug$'] = req.query.meta
+        }
+        if (req.query.search) {
+            settings.where = {
+                [Op.or]: [
+                    {
+                        title: {
+                        [Op.like]: `%${req.query.search}%`
+                        }
+                    },
+                    {
+                        description: {
+                            [Op.like]: `%${req.query.search}%`
+                        }
+                    }
+                ]
+            }
+        }
+        settings.where.status = STATUS.ACTIVE
+        const posts = await Post.findAll(settings);
         const mappedPost = posts.map(p => {
             let post =  p.dataValues;
             post.descriptionPreview = this.cutDescription(post.description);

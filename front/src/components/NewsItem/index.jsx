@@ -7,7 +7,7 @@ import { dateTimeFormat } from '../../helper';
 
 const Quote = ({id, title, descriptionPreview, preview, text, updatedAt}) => {
 
-    return <NavLink to={`/post/${id}`} className="newsItem" title="В приложении Google для iOS появилась игра-пасхалка" >
+    return <NavLink to={`/post/${id}`} className="newsItem" title={title} >
       <div className="newsItem__picture"><img src={`${process.env.REACT_APP_SERVER_NAME}${preview}`} alt={title} /></div>
       <div className="newsItem__information">
         <div>

@@ -12,6 +12,7 @@ function App() {
         <Header/>
         <div className="container">
           <Route exact path={['/']} component={MainPage}/>
+          <Route exact path={['/:meta']} component={MainPage}/>
           <Route exact path={['/post/:id']} component={NewsPage}/>
         </div>
         {/*<Safe.script async src="https://www.googletagmanager.com/gtag/js?id=G-S2QF44SPYR"></Safe.script>
