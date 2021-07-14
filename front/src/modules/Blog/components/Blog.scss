@@ -33,6 +33,9 @@
             background-color: #000;
             opacity: .7;
         } 
+        h1{
+            margin-bottom: 0;
+        }
         &--header{
             position: relative;
             z-index: 2;
@@ -80,4 +83,32 @@
             line-height: 180%;
         }
     }
+}
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 0;
+}
+@media screen and (max-width: 480px) {
+    .blog {
+        &__head{
+            padding: 0 10px;
+            height: 320px;
+            &--header {
+                font-size: 1.6em;
+                padding: 20px 0 20px;
+
+            }
+            &--text {
+                font-size: 1em;
+                line-height: 160%;
+                letter-spacing: 0.03em;
+            }
+        }
+        &__body {
+            padding: 15px 10px;
+            p {
+               font-size: 1em; 
+            }
+        }
+    }
+    
 }
