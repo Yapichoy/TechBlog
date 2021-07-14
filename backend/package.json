@@ -13,7 +13,9 @@
     "sequelize": "^6.6.4"
   },
   "scripts": {
-    "server": "node index.js"
+    "server": "node index.js",
+    "start": "forever start --minUptime 1000 --spinSleepTime 1000 index.js",
+    "stop": "forever stop index.js"
   },
   "devDependencies": {}
 }
