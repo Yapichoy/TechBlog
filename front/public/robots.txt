@@ -1,2 +1,3 @@
 User-agent: *
+Disallow: /routes.txt
 Sitemap: /sitemap.xml

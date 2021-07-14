@@ -5,6 +5,7 @@ backend/node_modules
 front/node_modules
 front/public/sitemap.xml
 front/public/routes.txt
+front/public/robots.txt
 /.pnp
 .pnp.js
 .vscode
