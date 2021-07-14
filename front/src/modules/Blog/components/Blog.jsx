@@ -9,7 +9,10 @@ const Blog = ({id, title, description, preview, text, updatedAt, metas, getPost,
       getPost(match.params.id);
     }, []);
     return <div className="blog">
-        <meta property="og:description" content={description}></meta>
+        <meta property="og:title" content={`GeekBreak.ru - ${title}`}/>
+        <meta property="og:description" content={description}/>
+        <meta property="og:image" content={`${process.env.REACT_APP_SERVER_NAME}${preview}`}/>
+        <meta property="og:url" content={`${process.env.REACT_APP_HOST}/post/${id}`}/>
         <div className="blog__head">
             <img src={`${process.env.REACT_APP_SERVER_NAME}${preview}`} alt={title} />
             <div className="blog__head--opacity"></div>
