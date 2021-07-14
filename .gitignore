@@ -2,6 +2,7 @@
 
 # dependencies
 backend/node_modules
+backend/public/uploads
 front/node_modules
 front/public/sitemap.xml
 front/public/routes.txt
