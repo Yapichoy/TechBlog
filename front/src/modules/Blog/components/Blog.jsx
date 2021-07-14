@@ -13,9 +13,9 @@ const Blog = ({id, title, description, preview, text, updatedAt, metas, getPost,
         <div className="blog__head">
             <img src={`${process.env.REACT_APP_SERVER_NAME}${preview}`} alt={title} />
             <div className="blog__head--opacity"></div>
-            <div className="blog__head--header">
+            <h1 className="blog__head--header">
               {title}
-            </div>
+            </h1>
             <div className="blog__head--text" >
               {description}
             </div>

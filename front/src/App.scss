@@ -9,3 +9,11 @@
   }
 }
 
+@media screen and (max-width: 768px) {
+  .App {
+    padding-bottom: 60px;
+    .container {
+      padding: 30px 15px 30px;
+    }
+  }
+}
