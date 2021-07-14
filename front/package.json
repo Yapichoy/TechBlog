@@ -4,6 +4,9 @@
   "private": true,
   "dependencies": {
     "@babel/core": "7.12.3",
+    "react-router-sitemap": "^1.2.0",
+    "@babel/node": "^7.5.5",
+    "@babel/preset-env": "^7.5.4",
     "@fortawesome/fontawesome-free": "^5.15.3",
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
@@ -90,7 +93,8 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
     "start": "forever start --minUptime 1000 --spinSleepTime 1000 scripts/start.js",
-    "stop": "forever stop scripts/start.js"
+    "stop": "forever stop scripts/start.js",
+    "sitemap": "node src/sitemap.js"
   },
   "eslintConfig": {
     "extends": [

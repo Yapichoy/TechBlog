@@ -3,7 +3,6 @@
     width: 100%;
     height: 80px;
     background: $footerBg;
-    padding-left: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -15,5 +14,11 @@
 
     p {
         margin-bottom: 0;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .footer{
+        height: 60px;
     }
 }
